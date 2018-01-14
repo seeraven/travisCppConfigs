@@ -1,0 +1,30 @@
+# Travis Configuration File
+#
+# For detailed information see https://docs.travis-ci.com/.
+
+# Programming language
+language: c++
+
+# We require sudo to install additional packages
+sudo: required
+
+# Operating Systems
+os:
+  - linux
+
+# Compilers
+compiler:
+  - gcc
+  - clang
+
+# Environment variables
+env:
+  - CUDA=8.0.61-1
+
+# Installing additional packages
+before_install:
+  - source .travis/install_cuda_trusty.sh
+
+script:
+  - make
+  - make test
