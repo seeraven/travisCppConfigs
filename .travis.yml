@@ -8,18 +8,33 @@ language: c++
 # We require sudo to install additional packages
 sudo: required
 
-# Operating Systems
-os:
-  - linux
+# Default Operating Systems
+os:   linux
+dist: trusty
 
-# Compilers
-compiler:
-  - gcc
-  - clang
+matrix:
+  include:
+    - env: COMPILER=clang++-3.6 CUDA=8.0
+      addons: &clang36
+        packages:
+          - clang-3.6
+          - g++-5
+        sources:
+          - ubuntu-toolchain-r-test
+          - llvm-toolchain-precise-3.6
 
-# Environment variables
-env:
-  - CUDA=8.0
+    - env: COMPILER=clang++-3.6 CUDA=9.1
+      addons: *clang36
+
+    - env: COMPILER=clang++-3.7 CUDA=8.0
+      addons: &clang37
+        apt:
+          packages:
+            - clang-3.7
+            - g++-5
+          sources:
+          - ubuntu-toolchain-r-test
+          - llvm-toolchain-precise-3.7
 
 # Installing additional packages
 before_install:
