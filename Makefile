@@ -6,10 +6,8 @@ all: build
 
 info:
 	@echo "System information:"
-	@echo " CC:    $(CC)"
-	@echo " CXX:   $(CXX)"
-	@echo " GCC:   $(shell gcc -dumpversion)"
-	@echo " Clang: $(shell clang --version | grep version | awk '{print $$3}')"
+	@echo " CC:    $(CC)  $(shell $(CC) -dumpversion)"
+	@echo " CXX:   $(CXX) $(shell $(CC) -dumpversion)"
 	@echo " NVCC:  $(shell nvcc --version | grep -oP 'V[0-9.]+')"
 
 build: info
