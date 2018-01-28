@@ -19,11 +19,11 @@ compiler:
 
 # Environment variables
 env:
-  - CUDA=8.0.61-1
+  - CUDA=8.0
 
 # Installing additional packages
 before_install:
-  - source .travis/install_cuda_trusty.sh
+  - source .travis/install_cuda.sh
 
 script:
   - make
