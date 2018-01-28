@@ -14,7 +14,9 @@ dist: trusty
 
 matrix:
   include:
-    - env: COMPILER=clang++-3.6 CUDA=8.0
+    - env:
+        - MATRIX_EVAL="CC=clang-3.6 && CXX=clang++-3.6"
+        - CUDA=8.0
       addons: &clang36
         packages:
           - clang-3.6
@@ -23,10 +25,14 @@ matrix:
           - ubuntu-toolchain-r-test
           - llvm-toolchain-precise-3.6
 
-    - env: COMPILER=clang++-3.6 CUDA=9.1
+    - env:
+        - MATRIX_EVAL="CC=clang-3.6 && CXX=clang++-3.6"
+        - CUDA=9.1
       addons: *clang36
 
-    - env: COMPILER=clang++-3.7 CUDA=8.0
+    - env:
+        - MATRIX_EVAL="CC=clang-3.7 && CXX=clang++-3.7"
+        - CUDA=8.0
       addons: &clang37
         apt:
           packages:
@@ -38,6 +44,7 @@ matrix:
 
 # Installing additional packages
 before_install:
+  - eval "${MATRIX_EVAL}"
   - source .travis/install_cuda.sh
 
 script:
