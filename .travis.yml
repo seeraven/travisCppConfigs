@@ -17,6 +17,7 @@ matrix:
     - env:
         - MATRIX_EVAL="CC=clang-3.6 && CXX=clang++-3.6"
         - CUDA=8.0
+      compiler: clang
       addons: &clang36
         packages:
           - clang-3.6
